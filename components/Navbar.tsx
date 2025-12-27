@@ -1,10 +1,15 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 
-export default function Navbar() {
+// 1. Define the Interface so TypeScript knows what to expect
+interface NavbarProps {
+  lang: 'EN' | 'TH' | string; // Matches your page.tsx state
+  setLang: Dispatch<SetStateAction<'EN' | 'TH'>>;
+}
+
+export default function Navbar({ lang, setLang }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [lang, setLang] = useState('EN'); // State for language toggle
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -27,8 +32,8 @@ export default function Navbar() {
         
         {/* Logo */}
         <div className="flex flex-col relative z-50">
-          <span className="font-serif text-2xl font-black text-vet-teal italic leading-none">
-            PETS<span className="text-vet-green not-italic">.</span>
+          <span className="font-serif text-2xl font-black text-[#008080] italic leading-none">
+            PETS<span className="text-[#4CAF50] not-italic">.</span>
           </span>
           <span className="text-[8px] uppercase tracking-[0.2em] font-bold text-slate-400">
             {lang === 'EN' ? 'Veterinary' : 'คลินิกหมอตั๊ก'}
@@ -51,10 +56,10 @@ export default function Navbar() {
             <a 
               key={link.en}
               href={link.href}
-              className="text-sm font-bold text-slate-600 hover:text-vet-teal transition-colors relative group"
+              className="text-sm font-bold text-slate-600 hover:text-[#008080] transition-colors relative group"
             >
               {lang === 'EN' ? link.en : link.th}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-vet-green transition-all group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#4CAF50] transition-all group-hover:w-full"></span>
             </a>
           ))}
           
@@ -72,7 +77,6 @@ export default function Navbar() {
 
         {/* Mobile Toggle Button */}
         <div className="md:hidden flex items-center gap-3 relative z-50">
-          {/* Mobile Lang Toggle */}
           <button 
             onClick={() => setLang(lang === 'EN' ? 'TH' : 'EN')}
             className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-[10px] font-black border border-slate-200"
@@ -87,9 +91,9 @@ export default function Navbar() {
             📞
           </a>
           <button onClick={() => setIsOpen(!isOpen)} className="flex flex-col gap-1.5 justify-center items-center w-8 h-8">
-            <span className={`h-0.5 w-6 bg-vet-teal transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-            <span className={`h-0.5 w-6 bg-vet-teal transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`h-0.5 w-6 bg-vet-teal transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+            <span className={`h-0.5 w-6 bg-[#008080] transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+            <span className={`h-0.5 w-6 bg-[#008080] transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`h-0.5 w-6 bg-[#008080] transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
           </button>
         </div>
       </div>
@@ -101,10 +105,9 @@ export default function Navbar() {
             key={link.en}
             href={link.href}
             onClick={() => setIsOpen(false)}
-            className="text-3xl font-serif font-black text-vet-teal italic text-center"
+            className="text-3xl font-serif font-black text-[#008080] italic text-center"
           >
             <span className="block">{lang === 'EN' ? link.en : link.th}</span>
-            {/* Show English subtext when in Thai mode for that boutique feel */}
             {lang === 'TH' && <span className="block text-[10px] uppercase tracking-[0.3em] text-slate-400 not-italic mt-2">{link.en}</span>}
           </a>
         ))}
