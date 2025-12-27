@@ -1,5 +1,6 @@
 import './globals.css';
 import { Fraunces, Outfit } from 'next/font/google';
+import { Metadata, Viewport } from 'next';
 
 // Professional Serif for Headings
 const fraunces = Fraunces({ 
@@ -15,8 +16,17 @@ const outfit = Outfit({
   display: 'swap',
 });
 
-// SPICY SEO: Optimized for local search in Samut Prakan
-export const metadata = {
+// NEW: Separate Viewport Export for Next.js 15/16
+// This prevents the "mobile overlap" by ensuring the zoom scale is correct
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
+// SEO: Optimized for local search in Samut Prakan
+export const metadata: Metadata = {
   title: 'PETS Veterinary | คลินิกหมอตั๊กรักษาสัตว์ Bang Sao Thong',
   description: 'Professional veterinary care by Dr. Tuck in Bang Sao Thong. บริการรักษาสัตว์ ผ่าตัด ทำหมัน ฉีดวัคซีน โดยสัตวแพทย์มืออาชีพ บางเสาธง สมุทรปราการ',
   keywords: [
@@ -39,14 +49,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="absolute top-[40%] -right-[10%] w-[30%] h-[50%] rounded-full bg-vet-teal/5 blur-[120px]" />
         </div>
 
-        {/* NOTE: <Navbar /> is now in page.tsx 
-            This allows it to share the 'lang' state with all sections.
+        {/* NOTE: <Navbar /> is in page.tsx to share 'lang' state.
         */}
         
         <main>{children}</main>
 
         {/* --- SPICY FLOATING ACTIONS --- */}
-        {/* These stay here as they are global utilities */}
         <div className="fixed bottom-6 right-6 z-[99] flex flex-col gap-4 items-end">
           <div className="flex items-center gap-3 group">
             <span className="bg-white px-3 py-1.5 rounded-lg shadow-lg text-[10px] font-bold text-vet-teal uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-slate-100">

@@ -1,15 +1,11 @@
 import type { NextConfig } from "next";
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   typescript: {
-    ignoreBuildErrors: true, // Tells Vercel "It's okay, build anyway"
+    // This allows the build to finish even if there are small type errors
+    ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true, // Tells Vercel "Ignore linting for now"
-  },
+  // Removed the eslint block to fix the "Unrecognized key" error in Next.js 16
 };
 
 export default nextConfig;
-
-
-
