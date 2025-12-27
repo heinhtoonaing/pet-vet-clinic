@@ -95,20 +95,6 @@ Bash
 npm run dev
 Open the project: Navigate to http://localhost:3000 to see the result.
 
-📂 Project Structure
-Plaintext
-
-├── components/
-│   ├── Navbar.tsx      # Bilingual toggle & emergency CTA
-│   ├── Hero.tsx        # Value proposition
-│   ├── About.tsx       # Animated "Like Family" section with Paw interaction
-│   ├── Services.tsx    # Staggered service cards
-│   ├── Schedule.tsx    # Interactive traffic chart & Skeleton loading
-│   └── ...
-├── app/
-│   ├── page.tsx        # Main entry point (Client side state management)
-│   └── layout.tsx      # Global fonts & SEO Metadata
-└── public/             # Static assets (Paw prints, clinic photos)
 📈 Optimization & SEO
 Performance: Achieved 95+ scores on Google Lighthouse.
 
